@@ -263,16 +263,18 @@ export function Dashboard() {
   return (
     <div className="p-5 space-y-4">
       <OnboardingChecklistWidget />
-      <section className="rounded-xl border border-border bg-card p-4">
+      <section className="rounded-xl border border-border bg-gradient-to-br from-card via-card to-primary/[0.03] p-4">
         <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="text-2xs uppercase tracking-[0.12em] text-muted-foreground">Overview</div>
+            <div className="text-2xs uppercase tracking-[0.15em] text-primary/70 font-semibold">
+              {isLocal ? 'Local Runtime' : 'Gateway'} &middot; Control Center
+            </div>
             <h2 className="text-lg font-semibold text-foreground">
-              {isLocal ? 'Local Agent Runtime' : 'Gateway Control Plane'}
+              {isLocal ? 'Agent Runtime Overview' : 'Gateway Control Plane'}
             </h2>
             <p className="text-xs text-muted-foreground">
               {isLocal
-                ? 'Unified visibility for Claude, Codex & Hermes local sessions, host pressure, and operator continuity.'
+                ? 'Unified visibility for Claude, Codex & Hermes sessions, host pressure, and operator continuity.'
                 : 'Gateway-first health, session routing, queue pressure, and incident response signals.'}
             </p>
           </div>

@@ -419,6 +419,44 @@
     100% { opacity: 1; transform: scale(1); }
   }
 
+  /* Premium card hover — subtle lift effect for interactive cards */
+  .card-interactive {
+    @apply transition-all duration-200 ease-out;
+  }
+  .card-interactive:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 4px 12px hsl(var(--background) / 0.4),
+      0 0 0 1px hsl(var(--primary) / 0.08);
+  }
+
+  /* Accent gradient text — for premium headings */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--void-violet)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Premium divider with gradient fade */
+  .divider-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  }
+
+  /* Status indicator ring — for premium status dots */
+  .status-ring {
+    position: relative;
+  }
+  .status-ring::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    border: 1px solid currentColor;
+    opacity: 0.2;
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,

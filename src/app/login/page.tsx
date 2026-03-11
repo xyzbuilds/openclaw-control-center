@@ -162,20 +162,23 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background void-bg p-4">
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-lg overflow-hidden bg-background border border-border/50 flex items-center justify-center mb-3">
-            <Image
-              src="/brand/mc-logo-128.png"
-              alt="OpenClaw Control Center"
-              width={48}
-              height={48}
-              className="h-full w-full object-cover"
-              priority
-            />
+          <div className="relative mb-4">
+            <div className="absolute -inset-3 rounded-2xl bg-primary/8 blur-xl" />
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-background border border-border/50 flex items-center justify-center shadow-lg shadow-primary/10">
+              <Image
+                src="/brand/mc-logo-128.png"
+                alt="OpenClaw Control Center"
+                width={56}
+                height={56}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
           </div>
-          <h1 className="text-xl font-semibold text-foreground">OpenClaw Control Center</h1>
+          <h1 className="text-xl font-semibold text-foreground tracking-tight">OpenClaw Control Center</h1>
           <p className="text-sm text-muted-foreground mt-1">Sign in to your command center</p>
         </div>
 
