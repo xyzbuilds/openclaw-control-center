@@ -43,6 +43,7 @@ const navGroups: NavGroup[] = [
       { id: 'activity', label: 'Activity', icon: <ActivityIcon />, priority: true, essential: true },
       { id: 'logs', label: 'Logs', icon: <LogsIcon />, priority: false, essential: true },
       { id: 'cost-tracker', label: 'Cost Tracker', icon: <TokensIcon />, priority: false },
+      { id: 'model-grid', label: 'Models', icon: <ModelGridIcon />, priority: false },
       { id: 'nodes', label: 'Nodes', icon: <NodesIcon />, priority: false },
       { id: 'exec-approvals', label: 'Approvals', icon: <ApprovalsIcon />, priority: false },
       { id: 'office', label: 'Office', icon: <OfficeIcon />, priority: false },
@@ -56,6 +57,7 @@ const navGroups: NavGroup[] = [
       { id: 'webhooks', label: 'Webhooks', icon: <WebhookIcon />, priority: false },
       { id: 'alerts', label: 'Alerts', icon: <AlertIcon />, priority: false },
       { id: 'github', label: 'GitHub', icon: <GitHubIcon />, priority: false },
+      { id: 'git-activity', label: 'Git Log', icon: <GitActivityIcon />, priority: false },
     ],
   },
   {
@@ -1434,6 +1436,28 @@ function PluginIcon() {
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 2v3M10 2v3M4 5h8a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" />
       <circle cx="8" cy="10" r="1.5" />
+    </svg>
+  )
+}
+
+function ModelGridIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="1" width="5" height="5" rx="1" />
+      <rect x="10" y="1" width="5" height="5" rx="1" />
+      <rect x="1" y="10" width="5" height="5" rx="1" />
+      <rect x="10" y="10" width="5" height="5" rx="1" />
+    </svg>
+  )
+}
+
+function GitActivityIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="3.5" r="2" />
+      <circle cx="8" cy="12.5" r="2" />
+      <path d="M8 5.5v5" />
+      <path d="M12 3.5h-2M4 12.5h2" />
     </svg>
   )
 }

@@ -21,7 +21,7 @@ interface Task {
   id: number
   title: string
   description?: string
-  status: 'inbox' | 'assigned' | 'in_progress' | 'review' | 'quality_review' | 'done'
+  status: 'inbox' | 'assigned' | 'in_progress' | 'review' | 'quality_review' | 'done' | 'archived'
   priority: 'low' | 'medium' | 'high' | 'critical' | 'urgent'
   assigned_to?: string
   created_by: string
@@ -92,6 +92,7 @@ const statusColumns = [
   { key: 'review', title: 'Review', color: 'bg-purple-500/20 text-purple-400' },
   { key: 'quality_review', title: 'Quality Review', color: 'bg-indigo-500/20 text-indigo-400' },
   { key: 'done', title: 'Done', color: 'bg-green-500/20 text-green-400' },
+  { key: 'archived', title: 'Archived', color: 'bg-gray-500/20 text-gray-400' },
 ]
 
 const priorityColors: Record<string, string> = {
@@ -1238,6 +1239,45 @@ function TaskDetailModal({
           <div className="flex justify-between items-start mb-4">
             <h3 id="task-detail-title" className="text-xl font-bold text-foreground">{task.title}</h3>
             <div className="flex gap-2">
+              {(task.status === 'done' || task.status === 'archived') && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-cyan-400 hover:bg-cyan-500/10"
+                  onClick={async () => {
+                    const templateName = prompt('Template name:', task.title)
+                    if (!templateName) return
+                    try {
+                      const res = await fetch('/api/workflows/templates', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          name: templateName,
+                          description: task.description || '',
+                          steps: [{
+                            type: 'task',
+                            title: task.title,
+                            description: task.description || '',
+                            assigned_to: task.assigned_to || '',
+                            priority: task.priority,
+                            tags: task.tags || [],
+                          }],
+                          tags: task.tags || [],
+                        }),
+                      })
+                      if (res.ok) {
+                        alert('Template saved successfully!')
+                      } else {
+                        alert('Failed to save template')
+                      }
+                    } catch {
+                      alert('Failed to save template')
+                    }
+                  }}
+                >
+                  Save as Template
+                </Button>
+              )}
               <Button variant="ghost" size="sm" onClick={() => onEdit(task)} className="text-primary hover:bg-primary/20">
                 Edit
               </Button>

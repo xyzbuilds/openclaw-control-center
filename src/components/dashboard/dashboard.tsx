@@ -5,6 +5,7 @@ import { useMissionControl } from '@/store'
 import { useNavigateToPanel } from '@/lib/navigation'
 import { useSmartPoll } from '@/lib/use-smart-poll'
 import { SignalPill, getLocalOsStatus, getProviderHealth, getMcHealth } from './widget-primitives'
+import { AutoRefreshCountdown } from '@/components/ui/auto-refresh-countdown'
 import { OnboardingChecklistWidget } from './widgets/onboarding-checklist-widget'
 import { WidgetGrid } from './widget-grid'
 import type { DbStats, ClaudeStats, LogLike, DashboardData } from './widget-primitives'
@@ -278,11 +279,17 @@ export function Dashboard() {
                 : 'Gateway-first health, session routing, queue pressure, and incident response signals.'}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-2 min-w-[280px]">
-            <SignalPill label="Mode" value={isLocal ? 'Local' : 'Gateway'} tone="info" />
-            <SignalPill label="Events" value={`${mergedRecentLogs.length} stream`} tone={recentErrorLogs > 0 ? 'warning' : 'success'} />
-            <SignalPill label="Queue" value={String(backlogCount)} tone={backlogCount > 10 ? 'warning' : 'info'} />
-            <SignalPill label="Errors" value={String(errorCount)} tone={errorCount > 0 ? 'warning' : 'success'} />
+          <div className="flex items-start gap-3">
+            <div className="grid grid-cols-2 gap-2 min-w-[280px]">
+              <SignalPill label="Mode" value={isLocal ? 'Local' : 'Gateway'} tone="info" />
+              <SignalPill label="Events" value={`${mergedRecentLogs.length} stream`} tone={recentErrorLogs > 0 ? 'warning' : 'success'} />
+              <SignalPill label="Queue" value={String(backlogCount)} tone={backlogCount > 10 ? 'warning' : 'info'} />
+              <SignalPill label="Errors" value={String(errorCount)} tone={errorCount > 0 ? 'warning' : 'success'} />
+            </div>
+            <AutoRefreshCountdown
+              intervalSeconds={isLocal ? 15 : 60}
+              onRefresh={loadDashboard}
+            />
           </div>
         </div>
       </section>

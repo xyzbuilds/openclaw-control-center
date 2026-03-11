@@ -261,6 +261,70 @@ export function CostTrackerPanel() {
   )
 }
 
+// ── Cost Projection Card ──────────────────────────────────
+
+function CostProjectionCard({
+  stats, timeframe, trendData,
+}: {
+  stats: UsageStats; trendData: TrendData | null; timeframe: Timeframe
+}) {
+  const cost = stats.summary.totalCost
+  if (cost <= 0) return null
+
+  // Extrapolate based on timeframe
+  const projections = (() => {
+    switch (timeframe) {
+      case 'hour': return { daily: cost * 24, weekly: cost * 24 * 7, monthly: cost * 24 * 30 }
+      case 'day': return { daily: cost, weekly: cost * 7, monthly: cost * 30 }
+      case 'week': return { daily: cost / 7, weekly: cost, monthly: cost * (30 / 7) }
+      case 'month': return { daily: cost / 30, weekly: cost / (30 / 7), monthly: cost }
+    }
+  })()
+
+  // Trend direction from recent data
+  const trends = trendData?.trends
+  let trendDirection: 'up' | 'down' | 'flat' = 'flat'
+  if (trends && trends.length >= 4) {
+    const half = Math.floor(trends.length / 2)
+    const firstHalf = trends.slice(0, half).reduce((s, t) => s + t.cost, 0) / half
+    const secondHalf = trends.slice(half).reduce((s, t) => s + t.cost, 0) / (trends.length - half)
+    if (secondHalf > firstHalf * 1.15) trendDirection = 'up'
+    else if (secondHalf < firstHalf * 0.85) trendDirection = 'down'
+  }
+
+  const trendLabel = trendDirection === 'up' ? 'Trending up' : trendDirection === 'down' ? 'Trending down' : 'Stable'
+  const trendColor = trendDirection === 'up' ? 'text-orange-400' : trendDirection === 'down' ? 'text-green-400' : 'text-muted-foreground'
+  const trendIcon = trendDirection === 'up' ? '↑' : trendDirection === 'down' ? '↓' : '→'
+
+  return (
+    <div className="bg-card border border-border rounded-lg p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold">Cost Projection</h2>
+        <span className={`text-xs font-medium ${trendColor} flex items-center gap-1`}>
+          <span>{trendIcon}</span> {trendLabel}
+        </span>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-secondary rounded-lg p-4">
+          <div className="text-xs text-muted-foreground mb-1">Projected Daily</div>
+          <div className="text-2xl font-bold text-foreground">{formatCost(projections.daily)}</div>
+          <div className="text-xs text-muted-foreground mt-1">Based on {timeframe} usage</div>
+        </div>
+        <div className="bg-secondary rounded-lg p-4">
+          <div className="text-xs text-muted-foreground mb-1">Projected Weekly</div>
+          <div className="text-2xl font-bold text-foreground">{formatCost(projections.weekly)}</div>
+          <div className="text-xs text-muted-foreground mt-1">{formatNumber(Math.round(stats.summary.totalTokens * (projections.weekly / cost)))} tokens</div>
+        </div>
+        <div className="bg-secondary rounded-lg p-4">
+          <div className="text-xs text-muted-foreground mb-1">Projected Monthly</div>
+          <div className="text-2xl font-bold text-cyan-400">{formatCost(projections.monthly)}</div>
+          <div className="text-xs text-muted-foreground mt-1">{formatNumber(Math.round(stats.summary.totalTokens * (projections.monthly / cost)))} tokens</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Overview View ──────────────────────────────────
 
 function OverviewView({
@@ -415,6 +479,11 @@ function OverviewView({
           </div>
         </div>
       </div>
+
+      {/* Cost Projection */}
+      {stats && stats.summary.totalCost > 0 && (
+        <CostProjectionCard stats={stats} timeframe={timeframe} trendData={trendData} />
+      )}
 
       {/* Performance insights */}
       {models.length > 0 && (

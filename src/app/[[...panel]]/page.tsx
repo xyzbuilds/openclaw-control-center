@@ -32,6 +32,8 @@ import { SkillsPanel } from '@/components/panels/skills-panel'
 import { LocalAgentsDocPanel } from '@/components/panels/local-agents-doc-panel'
 import { ChannelsPanel } from '@/components/panels/channels-panel'
 import { DebugPanel } from '@/components/panels/debug-panel'
+import { ModelGridPanel } from '@/components/panels/model-grid-panel'
+import { GitActivityPanel } from '@/components/panels/git-activity-panel'
 import { SecurityAuditPanel } from '@/components/panels/security-audit-panel'
 import { NodesPanel } from '@/components/panels/nodes-panel'
 import { ExecApprovalPanel } from '@/components/panels/exec-approval-panel'
@@ -540,6 +542,12 @@ function ContentRouter({ tab }: { tab: string }) {
       return <NodesPanel />
     case 'security':
       return <SecurityAuditPanel />
+    case 'model-grid':
+    case 'models':
+      return <ModelGridPanel />
+    case 'git-activity':
+    case 'git-log':
+      return <GitActivityPanel />
     case 'debug':
       return <DebugPanel />
     case 'exec-approvals':

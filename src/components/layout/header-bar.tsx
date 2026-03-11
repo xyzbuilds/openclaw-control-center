@@ -38,6 +38,8 @@ const QUICK_NAV_COMMANDS: Array<{ panel: string; title: string; aliases: string[
   { panel: 'github', title: 'Go to GitHub Sync', aliases: ['github', 'sync'] },
   { panel: 'office', title: 'Go to Office', aliases: ['workspace', 'team'] },
   { panel: 'skills', title: 'Go to Skills', aliases: ['skill packs', 'agent skills'] },
+  { panel: 'model-grid', title: 'Go to Model Grid', aliases: ['models', 'llm', 'pricing'] },
+  { panel: 'git-activity', title: 'Go to Git Activity', aliases: ['git log', 'commits', 'git history'] },
 ]
 
 export function HeaderBar() {
