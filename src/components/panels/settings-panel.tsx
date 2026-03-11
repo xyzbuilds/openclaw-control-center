@@ -26,7 +26,7 @@ interface ApiKeyInfo {
 }
 
 const categoryLabels: Record<string, { label: string; icon: string; description: string }> = {
-  general: { label: 'General', icon: '⚙', description: 'Core Mission Control settings' },
+  general: { label: 'General', icon: '⚙', description: 'Core Control Center settings' },
   security: { label: 'Security', icon: '🔑', description: 'API key management and security settings' },
   retention: { label: 'Data Retention', icon: '🗄', description: 'How long data is kept before cleanup' },
   gateway: { label: 'Gateway', icon: '🔌', description: 'OpenClaw gateway connection settings' },
@@ -286,7 +286,7 @@ export function SettingsPanel() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-semibold text-foreground">Settings</h2>
-          <p className="text-xs text-muted-foreground mt-0.5">Configure Mission Control behavior and retention policies</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Configure Control Center behavior and retention policies</p>
         </div>
         <div className="flex items-center gap-2">
           {hasChanges && (

@@ -168,15 +168,15 @@ export default function LoginPage() {
           <div className="w-12 h-12 rounded-lg overflow-hidden bg-background border border-border/50 flex items-center justify-center mb-3">
             <Image
               src="/brand/mc-logo-128.png"
-              alt="Mission Control logo"
+              alt="OpenClaw Control Center"
               width={48}
               height={48}
               className="h-full w-full object-cover"
               priority
             />
           </div>
-          <h1 className="text-xl font-semibold text-foreground">Mission Control</h1>
-          <p className="text-sm text-muted-foreground mt-1">Sign in to continue</p>
+          <h1 className="text-xl font-semibold text-foreground">OpenClaw Control Center</h1>
+          <p className="text-sm text-muted-foreground mt-1">Sign in to your command center</p>
         </div>
 
         {pendingApproval && (
@@ -291,7 +291,7 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <p className="text-center text-xs text-muted-foreground mt-6">OpenClaw Agent Orchestration</p>
+        <p className="text-center text-xs text-muted-foreground mt-6">Mission Control for your AI workforce</p>
       </div>
     </div>
   )

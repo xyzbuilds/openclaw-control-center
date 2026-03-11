@@ -1,7 +1,7 @@
 {
-  "name": "mission-control",
+  "name": "openclaw-control-center",
   "version": "2.0.0",
-  "description": "OpenClaw Mission Control — open-source agent orchestration dashboard",
+  "description": "OpenClaw Control Center — the command center for your AI workforce",
   "scripts": {
     "verify:node": "node scripts/check-node-version.mjs",
     "dev": "pnpm run verify:node && next dev --hostname 127.0.0.1 --port ${PORT:-3000}",
@@ -75,7 +75,7 @@
     "dashboard",
     "nextjs"
   ],
-  "author": "Builderz Labs",
+  "author": "Xuyang Zhang",
   "license": "MIT",
   "repository": {
     "type": "git",

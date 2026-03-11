@@ -137,7 +137,7 @@ function PageLoader({ steps }: { steps?: InitStep[] }) {
             <div className="animate-float" style={{ animationDelay: '2.7s' }}>
               <Image
                 src="/brand/mc-logo-128.png"
-                alt="Mission Control"
+                alt="OpenClaw Control Center"
                 width={56}
                 height={56}
                 priority
@@ -151,10 +151,10 @@ function PageLoader({ steps }: { steps?: InitStep[] }) {
         {/* Title */}
         <div className="flex flex-col items-center gap-1">
           <h1 className="font-mono text-sm tracking-[0.2em] uppercase text-foreground font-medium">
-            Mission Control
+            Control Center
           </h1>
           <p className="text-2xs text-muted-foreground/60">
-            Agent Orchestration
+            OpenClaw Agent Orchestration
           </p>
         </div>
 

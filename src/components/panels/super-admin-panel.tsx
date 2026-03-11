@@ -509,7 +509,7 @@ export function SuperAdminPanel() {
     return (
       <div className="p-8 text-center">
         <div className="text-lg font-semibold text-foreground mb-2">Access Denied</div>
-        <p className="text-sm text-muted-foreground">Super Mission Control requires admin privileges.</p>
+        <p className="text-sm text-muted-foreground">Super Admin requires admin privileges.</p>
       </div>
     )
   }
@@ -527,7 +527,7 @@ export function SuperAdminPanel() {
     <div className="p-6 max-w-7xl mx-auto space-y-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold text-foreground">Super Mission Control</h2>
+          <h2 className="text-lg font-semibold text-foreground">Super Admin</h2>
           <p className="text-sm text-muted-foreground">
             {isLocal
               ? 'Local control plane view over scheduler automations and runtime state.'

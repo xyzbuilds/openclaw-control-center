@@ -36,7 +36,7 @@ function resolveMetadataBase(): URL {
   }
 
   // Prevent localhost fallback in production metadata when env is unset.
-  return new URL('https://mission-control.local')
+  return new URL('https://openclaw-control-center.local')
 }
 
 const metadataBase = resolveMetadataBase()
@@ -49,8 +49,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Mission Control',
-  description: 'OpenClaw Agent Orchestration Dashboard',
+  title: 'OpenClaw Control Center',
+  description: 'Mission Control for your AI workforce — manage, monitor, and orchestrate OpenClaw agents from a single pane of glass',
   metadataBase,
   icons: {
     icon: [
@@ -61,20 +61,20 @@ export const metadata: Metadata = {
     shortcut: ['/icon.png'],
   },
   openGraph: {
-    title: 'Mission Control',
-    description: 'OpenClaw Agent Orchestration Dashboard',
-    images: [{ url: '/brand/mc-logo-512.png', width: 512, height: 512, alt: 'Mission Control logo' }],
+    title: 'OpenClaw Control Center',
+    description: 'Mission Control for your AI workforce — manage, monitor, and orchestrate OpenClaw agents from a single pane of glass',
+    images: [{ url: '/brand/mc-logo-512.png', width: 512, height: 512, alt: 'OpenClaw Control Center' }],
   },
   twitter: {
     card: 'summary',
-    title: 'Mission Control',
-    description: 'OpenClaw Agent Orchestration Dashboard',
+    title: 'OpenClaw Control Center',
+    description: 'Mission Control for your AI workforce',
     images: ['/brand/mc-logo-512.png'],
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Mission Control',
+    title: 'OpenClaw Control Center',
   },
 }
 
